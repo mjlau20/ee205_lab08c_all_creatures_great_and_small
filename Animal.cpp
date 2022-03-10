@@ -15,19 +15,59 @@ using namespace std;
 
 const string Animal::kingdom = "Animalia";
 
-Animal::Animal(const string species) {
+
+Animal::Animal(const string &newSpecies) :
+    species(newSpecies) {
+    Animal::species = newSpecies;
+}
+
+Animal::Animal(const string &newSpecies, float newWeight) :
+    species(newSpecies), weight(newWeight) {
+    Animal::species = newSpecies;
+    Animal::weight  = newWeight;
+}
+
+Animal::Animal(const string &newSpecies, Gender newGender) :
+    species(newSpecies), gender(newGender) {
+    Animal::species = newSpecies;
+    Animal::gender  = newGender;
+}
+
+Animal::Animal(const string &newSpecies, Gender newGender, float newWeight) :
+    species(newSpecies), gender(newGender), weight(newWeight) {
+    Animal::species = newSpecies;
+    Animal::weight  = newWeight;
+    Animal::gender  = newGender;
+}
+
+const string &Animal::getKingdom() {
+    return kingdom;
+}
+
+const string &Animal::getSpecies() const {
+    return species;
+}
+
+Gender Animal::getGender() const {
+    return gender;
+}
+
+void Animal::setGender(Gender gender) {
+    Animal::gender = gender;
+}
+
+float Animal::getWeight() const {
+    return weight;
+}
+
+void Animal::setWeight(float weight) {
+    Animal::weight = weight;
+}
+
+void Animal::printInfo() {
 
 }
 
-Animal::Animal(const string species, const enum Gender) {
-
+bool Animal::isValid() {
+    return false;
 }
-
-Animal::Animal(const string species, const float weight) {
-
-}
-
-Animal::Animal(const string species, const float weight, const enum Gender) {
-
-}
-
