@@ -15,7 +15,7 @@ int main() {
 
     Animal myFirstAnimal = Animal( "Felis catus" );
     myFirstAnimal.setGender( MALE );
-    myFirstAnimal.setWeight( 19 ); // @todo Refactor to include Unit of Measure
+    myFirstAnimal.setWeight( 19 );
     myFirstAnimal.printInfo();
 
     return 0;

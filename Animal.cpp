@@ -89,14 +89,14 @@ bool Animal::validateWeight(const float newWeight) {
     return false;
 }
 
-bool Animal::validateSpecies(const string newSpecies) {
+bool Animal::validateSpecies(const string& newSpecies) {
     if ( newSpecies.empty() ) {
         return false;
     }
     return true;
 }
 
-void Animal::setSpecies(const string newSpecies) {
+void Animal::setSpecies(const string& newSpecies) {
     if ( !validateSpecies( newSpecies ) ) {
         throw invalid_argument( "Species must not be empty" );
     }

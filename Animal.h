@@ -53,10 +53,10 @@ protected:
 
 protected:
     bool validateWeight ( const float newWeight   );
-    bool validateSpecies( const string newSpecies );
+    bool validateSpecies( const string& newSpecies );
 
 private:
-    void setSpecies( const string newSpecies );
+    void setSpecies( const string& newSpecies );
 
 };
 
