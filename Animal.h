@@ -15,20 +15,20 @@
 
 using namespace std;
 
-enum Gender { UNKNOWN_GENDER, FEMALE, MALE };
-
+enum        Gender { UNKNOWN_GENDER, MALE, FEMALE };
 const float UNKNOWN_WEIGHT = -1;
 
 class Animal {
 public:
     Animal(const string &species);
 
+    Animal(const string &species, float weight);
+
     Animal(const string &species, Gender gender);
 
     Animal(const string &species, Gender gender, float weight);
 
-    Animal(const string &species, float weight);
-
+public:
     static const string &getKingdom();
 
     const string &getSpecies() const;
@@ -48,10 +48,11 @@ public:
 protected:
     static const string kingdom;
     string              species;
-    enum Gender          gender = UNKNOWN_GENDER;
-    float                weight = UNKNOWN_WEIGHT;
+    enum Gender         gender = UNKNOWN_GENDER;
+    float               weight = UNKNOWN_WEIGHT;
 
-    bool validateWeight( const float newWeight );
+protected:
+    bool validateWeight ( const float newWeight   );
     bool validateSpecies( const string newSpecies );
 
 private:

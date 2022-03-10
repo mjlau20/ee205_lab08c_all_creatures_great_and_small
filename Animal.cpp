@@ -16,28 +16,21 @@ using namespace std;
 
 const string Animal::kingdom = "Animalia";
 
-
-Animal::Animal(const string &newSpecies) :
-    species(newSpecies) {
-    Animal::species = newSpecies;
+Animal::Animal(const string &newSpecies) {
+    setSpecies( newSpecies );
 }
 
-Animal::Animal(const string &newSpecies, float newWeight) :
-    species(newSpecies) {
-    Animal::species = newSpecies;
+Animal::Animal(const string &newSpecies, float newWeight) {
+    setSpecies( newSpecies );
     setWeight( newWeight );
 }
 
-Animal::Animal(const string &newSpecies, Gender newGender) :
-    species(newSpecies), gender(newGender) {
-    Animal::species = newSpecies;
-    Animal::gender  = newGender;
+Animal::Animal(const string &newSpecies, Gender gender) : gender(gender) {
+    setSpecies( newSpecies );
 }
 
-Animal::Animal(const string &newSpecies, Gender newGender, float newWeight) :
-    species(newSpecies), gender(newGender) {
-    Animal::species = newSpecies;
-    Animal::gender  = newGender;
+Animal::Animal(const string &newSpecies, Gender gender, float newWeight) : gender(gender) {
+    setSpecies( newSpecies );
     setWeight( newWeight );
 }
 
@@ -54,6 +47,9 @@ Gender Animal::getGender() const {
 }
 
 void Animal::setGender(Gender newGender) {
+    if ( gender != UNKNOWN_GENDER && newGender != UNKNOWN_GENDER ) {
+        throw logic_error( "The previous gender must be UNKNOWN_GENDER" );
+    }
     Animal::gender = newGender;
 }
 
@@ -77,17 +73,17 @@ void Animal::printInfo() {
 }
 
 bool Animal::isValid() {
-    if (!validateWeight(weight)) {
+    if ( !validateWeight( weight ) ) {
         return false;
     }
-    return false;
+    return true;
 }
 
-bool Animal::validateWeight(const float newWeight ) {
-    if (newWeight == UNKNOWN_WEIGHT) {
+bool Animal::validateWeight(const float newWeight) {
+    if ( newWeight == UNKNOWN_WEIGHT ) {
         return true;
     }
-    if (newWeight > 0) {
+    if ( newWeight > 0 ) {
         return true;
     }
     return false;
@@ -97,12 +93,12 @@ bool Animal::validateSpecies(const string newSpecies) {
     if ( newSpecies.empty() ) {
         return false;
     }
-    return false;
+    return true;
 }
 
 void Animal::setSpecies(const string newSpecies) {
     if ( !validateSpecies( newSpecies ) ) {
-        throw invalid_argument( "Species must not be empty " );
-    species = newSpecies;
+        throw invalid_argument( "Species must not be empty" );
     }
+    species = newSpecies;
 }
