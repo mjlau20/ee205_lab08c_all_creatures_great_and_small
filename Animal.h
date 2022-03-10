@@ -48,10 +48,15 @@ public:
 protected:
     static const string kingdom;
     string              species;
-    enum Gender         gender = UNKNOWN_GENDER;
-    float               weight = UNKNOWN_WEIGHT;
+    enum Gender          gender = UNKNOWN_GENDER;
+    float                weight = UNKNOWN_WEIGHT;
+
+    bool validateWeight( const float newWeight );
+    bool validateSpecies( const string newSpecies );
+
+private:
+    void setSpecies( const string newSpecies );
 
 };
-
 
 #endif //EE205_LAB08C_ALL_CREATURES_GREAT_AND_SMALL_ANIMAL_H

@@ -9,6 +9,7 @@
 /// @date    10_Mar_2022
 ///////////////////////////////////////////////////////////////////////////////
 
+#include <iostream>
 #include "Animal.h"
 
 using namespace std;
@@ -22,9 +23,9 @@ Animal::Animal(const string &newSpecies) :
 }
 
 Animal::Animal(const string &newSpecies, float newWeight) :
-    species(newSpecies), weight(newWeight) {
+    species(newSpecies) {
     Animal::species = newSpecies;
-    Animal::weight  = newWeight;
+    setWeight( newWeight );
 }
 
 Animal::Animal(const string &newSpecies, Gender newGender) :
@@ -34,10 +35,10 @@ Animal::Animal(const string &newSpecies, Gender newGender) :
 }
 
 Animal::Animal(const string &newSpecies, Gender newGender, float newWeight) :
-    species(newSpecies), gender(newGender), weight(newWeight) {
+    species(newSpecies), gender(newGender) {
     Animal::species = newSpecies;
-    Animal::weight  = newWeight;
     Animal::gender  = newGender;
+    setWeight( newWeight );
 }
 
 const string &Animal::getKingdom() {
@@ -52,22 +53,56 @@ Gender Animal::getGender() const {
     return gender;
 }
 
-void Animal::setGender(Gender gender) {
-    Animal::gender = gender;
+void Animal::setGender(Gender newGender) {
+    Animal::gender = newGender;
 }
 
 float Animal::getWeight() const {
     return weight;
 }
 
-void Animal::setWeight(float weight) {
-    Animal::weight = weight;
+void Animal::setWeight(float newWeight) {
+    if( !validateWeight( newWeight ) ) {
+        throw invalid_argument( "Weight must be > 0" );
+    }
+    Animal::weight = newWeight;
 }
 
 void Animal::printInfo() {
-
+    cout << "Animal Fields" << endl;
+    cout << "  Kingdom = [" << getKingdom() << "]" << endl;
+    cout << "  Species = [" << getSpecies() << "]" << endl;
+    cout << "  Weight = ["  << getWeight()  << "]" << endl;
+    cout << "  Gender = ["  << getGender()  << "]" << endl;
 }
 
 bool Animal::isValid() {
+    if (!validateWeight(weight)) {
+        return false;
+    }
     return false;
+}
+
+bool Animal::validateWeight(const float newWeight ) {
+    if (newWeight == UNKNOWN_WEIGHT) {
+        return true;
+    }
+    if (newWeight > 0) {
+        return true;
+    }
+    return false;
+}
+
+bool Animal::validateSpecies(const string newSpecies) {
+    if ( newSpecies.empty() ) {
+        return false;
+    }
+    return false;
+}
+
+void Animal::setSpecies(const string newSpecies) {
+    if ( !validateSpecies( newSpecies ) ) {
+        throw invalid_argument( "Species must not be empty " );
+    species = newSpecies;
+    }
 }
